@@ -626,6 +626,95 @@ h3 {
   align-items: start;
 }
 
+.services-section {
+  display: grid;
+  grid-template-columns: minmax(310px, 0.68fr) minmax(0, 1.42fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.services-section .section-heading {
+  position: relative;
+  display: flex;
+  min-height: 586px;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.024)),
+    var(--surface);
+  overflow: hidden;
+}
+
+.services-section .section-heading::before {
+  content: "";
+  position: absolute;
+  inset: auto -70px -95px 18%;
+  height: 320px;
+  border: 1px solid rgba(55, 215, 198, 0.2);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,.1) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(58, 110, 232, 0.2), rgba(55, 215, 198, 0.08));
+  background-size: 28px 28px, 28px 28px, auto;
+  transform: rotate(-13deg);
+}
+
+.services-section .section-heading::after {
+  content: "5 направлений / 1 маршрут";
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  margin-top: 24px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: rgba(255, 206, 85, 0.13);
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+}
+
+.services-section .section-heading .section-tag,
+.services-section .section-heading h2 {
+  position: relative;
+  z-index: 1;
+}
+
+.services-map {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 34px;
+  padding-top: 34px;
+  border-top: 1px solid rgba(244, 247, 242, 0.12);
+}
+
+.services-map::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 18px;
+  top: 17px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3), transparent);
+}
+
+.services-map span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 9px;
+  background: rgba(244, 247, 242, 0.08);
+  color: var(--ink-2);
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
 .section-heading {
   max-width: 780px;
 }
@@ -683,6 +772,11 @@ h3 {
 
 .service-card.avito::before {
   background: var(--accent-4);
+}
+
+.service-card.email {
+  grid-column: 1 / -1;
+  min-height: 190px;
 }
 
 .service-card::after {
@@ -1138,6 +1232,7 @@ summary:focus-visible {
 
   .hero,
   .split-section,
+  .services-section,
   .visual-system-section,
   .testimonials-section,
   .lead-section {
@@ -1154,8 +1249,8 @@ summary:focus-visible {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .services-grid {
-    grid-template-columns: 1fr;
+  .services-section .section-heading {
+    min-height: 360px;
   }
 
   .visual-system-copy {
@@ -1250,6 +1345,19 @@ summary:focus-visible {
 
   .case-grid {
     grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-section .section-heading {
+    min-height: 340px;
+    padding: 24px;
+  }
+
+  .service-card.email {
+    grid-column: auto;
   }
 
   .process-list {
