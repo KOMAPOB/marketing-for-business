@@ -59,6 +59,28 @@ body::after {
   opacity: 0.8;
 }
 
+main {
+  position: relative;
+  overflow: hidden;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  top: 12vh;
+  left: 50%;
+  z-index: -1;
+  width: 140vw;
+  height: 760px;
+  pointer-events: none;
+  background:
+    linear-gradient(108deg, transparent 0 19%, rgba(58, 110, 232, 0.18) 19% 32%, transparent 32% 100%),
+    linear-gradient(108deg, transparent 0 56%, rgba(55, 215, 198, 0.12) 56% 63%, transparent 63% 100%),
+    linear-gradient(108deg, transparent 0 72%, rgba(255, 206, 85, 0.1) 72% 76%, transparent 76% 100%);
+  transform: translateX(-50%) rotate(-5deg);
+  opacity: 0.9;
+}
+
 a {
   color: inherit;
 }
@@ -144,6 +166,11 @@ h3 {
   justify-content: center;
   gap: 4px;
   overflow: hidden;
+  scrollbar-width: none;
+}
+
+.main-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .main-nav a,
@@ -250,6 +277,7 @@ h3 {
 
 .hero-visual {
   position: relative;
+  isolation: isolate;
 }
 
 .hero-visual::before {
@@ -267,18 +295,41 @@ h3 {
 }
 
 .hero-visual img {
+  position: relative;
+  z-index: 1;
   border-radius: 18px;
   box-shadow: var(--shadow);
   transition: transform 300ms ease, filter 300ms ease;
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 7% -3% -8% 9%;
+  z-index: 0;
+  border: 1px solid rgba(55, 215, 198, 0.2);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(58, 110, 232, 0.14), transparent 42%),
+    linear-gradient(315deg, rgba(255, 206, 85, 0.12), transparent 38%);
+  transform: rotate(-3deg);
+  transition: transform 300ms ease, border-color 300ms ease;
 }
 
 .hero-visual:hover img {
   transform: translateY(-6px) rotate(-0.6deg);
 }
 
+.hero-visual:hover::after {
+  transform: rotate(-5deg) translateY(10px);
+  border-color: rgba(255, 206, 85, 0.28);
+}
+
 .hero-copy,
 .hero-visual,
 .proof-band,
+.visual-system-copy,
+.visual-system-stage,
 .service-card,
 .process-list article,
 .price-card,
@@ -344,6 +395,230 @@ h3 {
   scroll-margin-top: 112px;
 }
 
+.visual-system-section {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.62fr) minmax(0, 1.38fr);
+  gap: 28px;
+  align-items: stretch;
+  padding-top: clamp(44px, 7vw, 86px);
+}
+
+.visual-system-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 440px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025)),
+    var(--surface);
+}
+
+.visual-system-copy::after {
+  content: "01 / route map";
+  width: fit-content;
+  margin-top: 32px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  background: rgba(255, 206, 85, 0.12);
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+}
+
+.visual-system-copy p:not(.section-tag) {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.visual-system-stage {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(58, 110, 232, 0.18), rgba(55, 215, 198, 0.08) 42%, rgba(8, 13, 12, 0.94) 78%),
+    var(--paper);
+  background-size: 54px 54px, 54px 54px, auto, auto;
+  box-shadow: var(--shadow);
+}
+
+.visual-system-stage::before,
+.visual-system-stage::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  pointer-events: none;
+}
+
+.visual-system-stage::before {
+  top: -80px;
+  left: -90px;
+  width: 460px;
+  height: 620px;
+  background: linear-gradient(145deg, rgba(58, 110, 232, 0.55), rgba(55, 215, 198, 0.1));
+  clip-path: polygon(0 12%, 75% 0, 100% 92%, 12% 100%);
+  opacity: 0.62;
+}
+
+.visual-system-stage::after {
+  right: -70px;
+  bottom: -90px;
+  width: 420px;
+  height: 420px;
+  border: 1px solid rgba(255, 206, 85, 0.26);
+  transform: rotate(18deg);
+}
+
+.visual-word {
+  position: absolute;
+  left: 26px;
+  top: 22px;
+  color: rgba(244, 247, 242, 0.1);
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 950;
+  line-height: 0.82;
+  letter-spacing: 0;
+}
+
+.route-band {
+  position: absolute;
+  height: 12px;
+  border-radius: 0;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent);
+  opacity: 0.78;
+  transform-origin: center;
+  transition: transform 320ms ease, opacity 320ms ease;
+}
+
+.route-band-one {
+  top: 44%;
+  left: -12%;
+  width: 78%;
+  transform: rotate(-15deg);
+}
+
+.route-band-two {
+  right: -8%;
+  bottom: 29%;
+  width: 70%;
+  transform: rotate(-15deg);
+  background: linear-gradient(90deg, transparent, var(--accent-4), var(--accent-3), transparent);
+}
+
+.visual-system-stage:hover .route-band-one {
+  transform: rotate(-15deg) translateX(28px);
+}
+
+.visual-system-stage:hover .route-band-two {
+  transform: rotate(-15deg) translateX(-28px);
+}
+
+.signal-card {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  gap: 7px;
+  padding: 17px;
+  border: 1px solid rgba(244, 247, 242, 0.16);
+  border-radius: 14px;
+  background: rgba(12, 20, 18, 0.88);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.signal-card span {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.signal-card strong {
+  color: var(--ink);
+  font-size: 1.2rem;
+  line-height: 1.05;
+}
+
+.signal-card em {
+  color: var(--muted);
+  font-style: normal;
+}
+
+.signal-card i {
+  display: block;
+  height: 8px;
+  margin-top: 7px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), rgba(255, 255, 255, 0.14));
+}
+
+.signal-card-main {
+  left: 36px;
+  bottom: 38px;
+  width: min(360px, calc(100% - 72px));
+}
+
+.signal-card-analytics {
+  right: 42px;
+  top: 60px;
+  width: 230px;
+}
+
+.signal-card-creative {
+  right: 190px;
+  bottom: 110px;
+  width: 210px;
+}
+
+.visual-system-stage:hover .signal-card-main {
+  transform: translateY(-8px);
+  border-color: rgba(55, 215, 198, 0.42);
+}
+
+.visual-system-stage:hover .signal-card-analytics {
+  transform: translate(-8px, 8px);
+  border-color: rgba(255, 206, 85, 0.38);
+}
+
+.visual-system-stage:hover .signal-card-creative {
+  transform: translate(8px, -8px);
+  border-color: rgba(255, 107, 74, 0.36);
+}
+
+.channel-lane {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  top: 185px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.channel-lane span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 11px;
+  border-radius: 9px;
+  background: rgba(244, 247, 242, 0.1);
+  color: var(--ink-2);
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
 .split-section {
   display: grid;
   grid-template-columns: minmax(320px, 0.58fr) minmax(0, 1fr);
@@ -368,12 +643,14 @@ h3 {
 }
 
 .service-card {
+  position: relative;
   min-height: 210px;
   padding: 22px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.035));
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
   transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
 }
 
@@ -384,6 +661,8 @@ h3 {
 }
 
 .service-card::before {
+  position: relative;
+  z-index: 1;
   content: "";
   display: block;
   width: 38px;
@@ -404,6 +683,34 @@ h3 {
 
 .service-card.avito::before {
   background: var(--accent-4);
+}
+
+.service-card::after {
+  content: "";
+  position: absolute;
+  right: -26px;
+  top: 18px;
+  width: 128px;
+  height: 128px;
+  border: 1px solid rgba(244, 247, 242, 0.12);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+  transform: rotate(14deg);
+  opacity: 0.46;
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+
+.service-card:hover::after {
+  transform: rotate(9deg) translate(-8px, 8px);
+  opacity: 0.7;
+}
+
+.service-card h3,
+.service-card p {
+  position: relative;
+  z-index: 1;
 }
 
 .service-card p,
@@ -567,17 +874,36 @@ h3 {
 }
 
 .case-grid article {
+  position: relative;
   min-height: 230px;
   padding: 20px;
   border: 1px dashed rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
   transition: transform 200ms ease, border-color 200ms ease;
+}
+
+.case-grid article::before {
+  content: "";
+  position: absolute;
+  inset: auto -42px -54px auto;
+  width: 118px;
+  height: 118px;
+  background: linear-gradient(135deg, rgba(55, 215, 198, 0.22), rgba(255, 206, 85, 0.12));
+  transform: rotate(18deg);
 }
 
 .case-grid article:hover {
   transform: translateY(-4px);
   border-color: rgba(255, 206, 85, 0.45);
+}
+
+.case-grid h3,
+.case-grid p,
+.case-grid span {
+  position: relative;
+  z-index: 1;
 }
 
 .case-grid span {
@@ -812,6 +1138,7 @@ summary:focus-visible {
 
   .hero,
   .split-section,
+  .visual-system-section,
   .testimonials-section,
   .lead-section {
     grid-template-columns: 1fr;
@@ -829,6 +1156,10 @@ summary:focus-visible {
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .visual-system-copy {
+    min-height: auto;
   }
 
   .case-grid {
@@ -871,6 +1202,41 @@ summary:focus-visible {
   .hero {
     gap: 30px;
     padding-top: 34px;
+  }
+
+  .visual-system-stage {
+    min-height: 520px;
+  }
+
+  .visual-word {
+    font-size: clamp(3.2rem, 18vw, 5.6rem);
+  }
+
+  .signal-card-main,
+  .signal-card-analytics,
+  .signal-card-creative {
+    left: 18px;
+    right: 18px;
+    width: auto;
+  }
+
+  .signal-card-analytics {
+    top: 126px;
+  }
+
+  .signal-card-creative {
+    top: 250px;
+    bottom: auto;
+  }
+
+  .signal-card-main {
+    bottom: 28px;
+  }
+
+  .channel-lane {
+    left: 18px;
+    right: 18px;
+    top: 360px;
   }
 
   h1 {
@@ -917,6 +1283,7 @@ summary:focus-visible {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+    animation: none !important;
     transition: none !important;
   }
 }
