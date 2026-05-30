@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Заявка отправлена — ПроДвижение"
+  description="Спасибо за заявку. ПроДвижение свяжется с вами для короткого маркетингового разбора."
+  path="/success"
+  noindex
+>
+  <Header />
+  <main class="success-page">
+    <section>
+      <p class="section-tag">Заявка отправлена</p>
+      <h1>Спасибо. Мы свяжемся с вами</h1>
+      <p>Следующий шаг — коротко уточнить нишу, задачу и текущие каналы продвижения.</p>
+      <a class="button primary" href="/">Вернуться на главную</a>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

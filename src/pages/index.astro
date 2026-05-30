@@ -1,0 +1,219 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import LeadForm from "../components/LeadForm.astro";
+
+const services = [
+  {
+    title: "SEO",
+    text: "Подготовим сайт к росту в поиске: структура, семантика, контент, технические ошибки и приоритеты внедрения.",
+    accent: "search"
+  },
+  {
+    title: "Контекстная реклама",
+    text: "Настроим Директ под реальные запросы и экономику бизнеса: кампании, объявления, минус-слова, аналитика.",
+    accent: "direct"
+  },
+  {
+    title: "Таргетированная реклама ВК",
+    text: "Соберем гипотезы, аудитории и креативы для заявок, подписок или возвращения теплой аудитории.",
+    accent: "target"
+  },
+  {
+    title: "Авито",
+    text: "Упакуем объявления, рубрики и продвижение, чтобы площадка работала как отдельный канал продаж.",
+    accent: "avito"
+  },
+  {
+    title: "Email-маркетинг",
+    text: "Запустим письма для прогрева, повторных продаж и аккуратной работы с базой клиентов.",
+    accent: "email"
+  }
+];
+
+const process = [
+  ["01", "Разбор", "Смотрим нишу, сайт, спрос, конкурентов, текущую рекламу и точки утечки заявок."],
+  ["02", "Выбор каналов", "Не продаем все подряд: оставляем инструменты, которые подходят задаче, бюджету и срокам."],
+  ["03", "Команда", "Подключаем профильных специалистов: SEO, рекламу, аналитику, тексты, дизайн или Авито."],
+  ["04", "Запуск и контроль", "Фиксируем гипотезы, запускаем работы, смотрим цифры и убираем то, что не дает движения."]
+];
+
+const packages = [
+  {
+    title: "Диагностика",
+    fit: "Когда нужно понять, куда вкладывать бюджет",
+    items: ["Анализ бизнеса и конкурентов", "Карта каналов", "Приоритеты на 30 дней"],
+    cta: "Обсудить диагностику"
+  },
+  {
+    title: "Канал",
+    fit: "Когда нужно усилить одно направление",
+    items: ["SEO или реклама", "Настройка аналитики", "Еженедельный контроль"],
+    cta: "Выбрать канал"
+  },
+  {
+    title: "Система",
+    fit: "Когда нужен связанный маркетинг",
+    items: ["Несколько каналов", "Специалисты под задачу", "Отчетность и оптимизация"],
+    cta: "Собрать систему"
+  }
+];
+
+const cases = [
+  "SEO",
+  "Директ",
+  "ВК",
+  "Авито",
+  "Email"
+];
+
+const faqs = [
+  ["Вы работаете с любым малым бизнесом?", "Начинаем с короткого разбора. Если канал не подходит нише или бюджету, скажем об этом до запуска."],
+  ["Можно начать с одного направления?", "Да. Часто разумнее сначала проверить один канал, а затем расширять систему."],
+  ["Почему на сайте пока нет кейсов?", "Места подготовлены заранее. Реальные кейсы добавим после согласования с клиентами и без выдуманных цифр."],
+  ["Что будет после заявки?", "Свяжемся по телефону, уточним нишу и текущую задачу, затем предложим формат первого разбора."],
+  ["Нужен ли большой бюджет?", "Не всегда. Важно не количество инструментов, а соответствие канала задаче, марже и срокам."]
+];
+---
+
+<BaseLayout
+  title="ПроДвижение — маркетинг для малого бизнеса"
+  description="Маркетинговое агентство для малого бизнеса: анализируем задачу, выбираем рабочие каналы и подключаем специалистов под SEO, Директ, ВК, Авито и email-маркетинг."
+>
+  <Header />
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="section-tag">Маркетинг без лишних каналов</p>
+        <h1>Собираем продвижение под задачу бизнеса, а не под список услуг</h1>
+        <p class="hero-text">ПроДвижение помогает малому бизнесу выбрать понятный маркетинговый маршрут: анализируем нишу, отсеиваем лишнее и подключаем специалистов только там, где канал может сработать.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#contact">Получить разбор</a>
+          <a class="button secondary" href="#services">Смотреть услуги</a>
+        </div>
+      </div>
+
+      <aside class="hero-visual" aria-label="Схема маркетинговой системы">
+        <img src="/visual-marketing-system.svg" alt="Схема анализа, каналов и команды маркетинга" width="960" height="720" />
+      </aside>
+    </section>
+
+    <section class="proof-band" aria-label="Подход агентства">
+      <p>Сначала анализ. Потом гипотезы. Затем каналы, специалисты и контроль цифр.</p>
+      <span>SEO</span>
+      <span>Директ</span>
+      <span>ВК</span>
+      <span>Авито</span>
+      <span>Email</span>
+    </section>
+
+    <section class="section split-section" id="services">
+      <div class="section-heading">
+        <p class="section-tag">Услуги</p>
+        <h2>Не продаем “комплекс”, если бизнесу нужен один точный канал</h2>
+      </div>
+      <div class="services-grid">
+        {services.map((service) => (
+          <article class={`service-card ${service.accent}`}>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section process-section" id="process">
+      <div class="section-heading">
+        <p class="section-tag">Процесс</p>
+        <h2>Как мы решаем, что запускать</h2>
+        <p>Маркетинг начинается не с рекламного кабинета. Он начинается с понимания бизнеса, спроса и ограничений.</p>
+      </div>
+      <div class="process-list">
+        {process.map(([num, title, text]) => (
+          <article>
+            <span>{num}</span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section pricing-section" id="pricing">
+      <div class="section-heading">
+        <p class="section-tag">Пакеты</p>
+        <h2>Формат подбираем после короткого разбора</h2>
+        <p>Конкретные суммы лучше фиксировать после понимания ниши, целей, бюджета и текущего состояния маркетинга.</p>
+      </div>
+      <div class="pricing-grid">
+        {packages.map((pack, index) => (
+          <article class:list={["price-card", { featured: index === 1 }]}>
+            <p class="price-label">{pack.fit}</p>
+            <h3>{pack.title}</h3>
+            <p class="price">По задаче</p>
+            <ul>
+              {pack.items.map((item) => <li>{item}</li>)}
+            </ul>
+            <a href="#contact">{pack.cta}</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section cases-section" id="cases">
+      <div class="section-heading">
+        <p class="section-tag">Кейсы</p>
+        <h2>Места под кейсы уже заложены</h2>
+        <p>Здесь будут реальные истории по каждому направлению: задача, действия, результат и выводы. Пока не подставляем выдуманные цифры.</p>
+      </div>
+      <div class="case-grid">
+        {cases.map((name) => (
+          <article>
+            <span>Скоро</span>
+            <h3>{name}</h3>
+            <p>Подготовим кейс после согласования с клиентом и проверки данных.</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section testimonials-section">
+      <div class="section-heading">
+        <p class="section-tag">Отзывы</p>
+        <h2>Отзывы добавим после согласования</h2>
+      </div>
+      <div class="testimonial-placeholder">
+        <p>Мы не будем придумывать отзывы. Этот блок готов для реальных цитат клиентов: имя, компания, задача и что изменилось после работы.</p>
+        <a class="button secondary" href="#contact">Оставить заявку</a>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="section-heading">
+        <p class="section-tag">FAQ</p>
+        <h2>Коротко о старте работы</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map(([question, answer]) => (
+          <details>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="lead-section" id="contact">
+      <div>
+        <p class="section-tag">Заявка</p>
+        <h2>Оставьте телефон — начнем с короткого маркетингового разбора</h2>
+        <p>Без продажи лишних инструментов. Сначала поймем, какие каналы действительно могут дать движение вашему бизнесу.</p>
+      </div>
+      <LeadForm />
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

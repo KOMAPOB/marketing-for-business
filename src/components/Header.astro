@@ -1,0 +1,20 @@
+---
+const nav = [
+  { href: "#services", label: "Услуги" },
+  { href: "#cases", label: "Кейсы" },
+  { href: "#process", label: "Процесс" },
+  { href: "#pricing", label: "Пакеты" },
+  { href: "#faq", label: "FAQ" }
+];
+---
+
+<header class="site-header" aria-label="Шапка сайта">
+  <a class="brand" href="/" aria-label="ПроДвижение на главную">
+    <span class="brand-mark">П</span>
+    <span>ПроДвижение</span>
+  </a>
+  <nav class="main-nav" aria-label="Основная навигация">
+    {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+  <a class="header-cta" href="#contact">Разобрать маркетинг</a>
+</header>

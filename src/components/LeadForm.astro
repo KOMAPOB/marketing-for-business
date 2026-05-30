@@ -1,0 +1,21 @@
+---
+const compact = Astro.props.compact ?? false;
+---
+
+<form class:list={["lead-form", { compact }]} name="lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success">
+  <input type="hidden" name="form-name" value="lead" />
+  <p class="hidden">
+    <label>Не заполняйте это поле: <input name="bot-field" /></label>
+  </p>
+
+  <label for="phone">Телефон для связи</label>
+  <div class="form-row">
+    <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 999 000-00-00" required />
+    <button type="submit">Получить разбор</button>
+  </div>
+
+  <label class="consent">
+    <input type="checkbox" name="privacy" required />
+    <span>Согласен на обработку персональных данных и принимаю <a href="/privacy">политику конфиденциальности</a>.</span>
+  </label>
+</form>
